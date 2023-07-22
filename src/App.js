@@ -1,11 +1,23 @@
-import React from 'react';
-import DogPhotos from './DogPhotos';
+import React, { useState } from 'react';
+import { ChromePicker } from 'react-color';
+import './App.css';
 
 function App() {
+  const [selectedColor, setSelectedColor] = useState('#ffffff'); // Default color is white
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color.hex);
+  };
+
   return (
-    <div>
-      <h1>Random Dog Photos</h1>
-      <DogPhotos />
+    <div className="app">
+      <h1>Color Picker App</h1>
+      <div className="color-container">
+        <div className="color-display" style={{ backgroundColor: selectedColor }}>
+          <p>{selectedColor}</p>
+        </div>
+        <ChromePicker color={selectedColor} onChange={handleColorChange} />
+      </div>
     </div>
   );
 }
